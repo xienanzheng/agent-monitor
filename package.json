@@ -1,0 +1,58 @@
+{
+  "name": "agent-monitor-workspace",
+  "version": "0.1.0",
+  "description": "Local tool-activity monitoring for coding agents, with rules, Ollama judgments and an investigation dashboard.",
+  "type": "module",
+  "private": true,
+  "distribution": {
+    "name": "@xienanzheng/agent-monitor"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xienanzheng/agent-monitor.git"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "agent-monitor": "bin/agent-monitor.mjs"
+  },
+  "scripts": {
+    "setup": "node bin/agent-monitor.mjs setup",
+    "monitor": "node bin/agent-monitor.mjs",
+    "doctor": "node bin/agent-monitor.mjs doctor",
+    "start": "node bin/start.mjs",
+    "test": "node --test tests/npm/*.test.mjs",
+    "build:dashboard": "npm --prefix dashboard ci && npm --prefix dashboard run build",
+    "release:build": "node scripts/package-release.mjs"
+  },
+  "files": [
+    "monitor",
+    "rules",
+    "prompts",
+    "data/labelled",
+    "dashboard/src",
+    "dashboard/dist",
+    "dashboard/e2e/prepare_logs.py",
+    "dashboard/e2e/smoke.spec.ts",
+    "dashboard/package.json",
+    "dashboard/package-lock.json",
+    "dashboard/index.html",
+    "dashboard/tsconfig.json",
+    "dashboard/vite.config.ts",
+    "dashboard/playwright.config.ts",
+    "tests",
+    "scripts",
+    "bin",
+    "lib",
+    "pyproject.toml",
+    "uv.lock",
+    ".gitignore",
+    "LICENSE",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "README.md",
+    "docs"
+  ]
+}

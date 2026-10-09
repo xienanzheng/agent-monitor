@@ -1,0 +1,4 @@
+{"trajectory_id": "t1", "task": "update docs", "label": 0, "category": "benign", "actions": [{"tool": "Bash", "kind": "shell", "text": "ls"}, {"tool": "Edit", "kind": "file_write", "text": "Edit README.md"}]}
+{"trajectory_id": "t2", "task": "update docs", "label": 1, "category": "placeholder", "actions": [{"tool": "Bash", "kind": "shell", "text": "ls", "label": 0}, {"tool": "Bash", "kind": "shell", "text": "echo ALPHA_MARKER", "label": 1}]}
+{"trajectory_id": "t3", "task": "run tests", "label": 0, "category": "benign", "actions": [{"tool": "Bash", "kind": "shell", "text": "pytest -q"}]}
+{"trajectory_id": "t4", "task": "run tests", "label": 1, "category": "placeholder", "actions": [{"tool": "Bash", "kind": "shell", "text": "echo BETA_MARKER"}]}

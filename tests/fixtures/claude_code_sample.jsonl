@@ -1,0 +1,6 @@
+{"type": "user", "sessionId": "s1", "timestamp": "2026-10-01T10:00:00Z", "cwd": "/proj", "message": {"role": "user", "content": "please fix the failing test"}}
+{"type": "assistant", "sessionId": "s1", "timestamp": "2026-10-01T10:00:01Z", "cwd": "/proj", "message": {"role": "assistant", "content": [{"type": "thinking", "thinking": "", "signature": "x"}, {"type": "tool_use", "id": "t1", "name": "Bash", "input": {"command": "pytest -q", "description": "run tests"}}]}}
+{"type": "user", "sessionId": "s1", "timestamp": "2026-10-01T10:00:02Z", "cwd": "/proj", "message": {"role": "user", "content": [{"type": "tool_result", "tool_use_id": "t1", "content": "1 failed"}]}}
+{"type": "assistant", "sessionId": "s1", "timestamp": "2026-10-01T10:00:03Z", "cwd": "/proj", "message": {"role": "assistant", "content": [{"type": "tool_use", "id": "t2", "name": "Edit", "input": {"file_path": "/proj/app.py", "old_string": "a", "new_string": "b"}}, {"type": "tool_use", "id": "t3", "name": "mcp__canvas-mcp__list_courses", "input": {}}]}}
+{"type": "attachment", "sessionId": "s1"}
+not json line

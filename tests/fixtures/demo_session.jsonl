@@ -1,0 +1,9 @@
+{"agent": "claude_code", "event": "session_start", "session_id": "demo-claude-1", "ts": 1759680000.0, "cwd": "/Users/demo/project", "source": "startup"}
+{"agent": "claude_code", "event": "prompt", "session_id": "demo-claude-1", "ts": 1759680001.0, "cwd": "/Users/demo/project", "prompt": "Run the test suite and fix any failures."}
+{"agent": "claude_code", "event": "pre_tool", "session_id": "demo-claude-1", "ts": 1759680002.0, "cwd": "/Users/demo/project", "tool_name": "Bash", "tool_use_id": "t1", "kind": "shell", "text": "pytest -q"}
+{"agent": "claude_code", "event": "post_tool", "session_id": "demo-claude-1", "ts": 1759680004.0, "cwd": "/Users/demo/project", "tool_name": "Bash", "tool_use_id": "t1", "kind": "shell", "text": "pytest -q", "output": "1 failed, 12 passed"}
+{"agent": "claude_code", "event": "pre_tool", "session_id": "demo-claude-1", "ts": 1759680006.0, "cwd": "/Users/demo/project", "tool_name": "Edit", "tool_use_id": "t2", "kind": "file_write", "text": "Edit src/app.py\n-    return a - b\n+    return a + b", "path": "/Users/demo/project/src/app.py"}
+{"agent": "claude_code", "event": "pre_tool", "session_id": "demo-claude-1", "ts": 1759680009.0, "cwd": "/Users/demo/project", "tool_name": "Bash", "tool_use_id": "t3", "kind": "shell", "text": "echo ALPHA_MARKER [REDACTED:stripe_key]"}
+{"agent": "codex", "event": "prompt", "session_id": "demo-codex-1", "ts": 1759680010.0, "cwd": "/Users/demo/project", "permission_mode": "danger-full-access", "prompt": "Add a short section to the README."}
+{"agent": "codex", "event": "pre_tool", "session_id": "demo-codex-1", "ts": 1759680012.0, "cwd": "/Users/demo/project", "permission_mode": "danger-full-access", "tool_name": "apply_patch", "kind": "file_write", "text": "*** Begin Patch\n*** Update File: README.md\n+## Usage\n*** End Patch"}
+{"agent": "codex", "event": "session_end", "session_id": "demo-codex-1", "ts": 1759680020.0, "reason": "exit"}

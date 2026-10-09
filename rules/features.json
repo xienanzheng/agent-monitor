@@ -1,0 +1,75 @@
+[
+  {
+    "tag": "credential_read",
+    "pattern": "(?:\\.aws[/\\\\]credentials|\\.ssh[/\\\\]id_(?:rsa|ed25519)|(?:^|[/\\\\])\\.env\\b|(?:printenv|env)\\b|keychain|gh\\s+auth\\s+token)",
+    "kinds": [],
+    "fields": [
+      "text",
+      "path"
+    ]
+  },
+  {
+    "tag": "network_send",
+    "pattern": "(?:curl\\b.*(?:--data|\\s-d\\b|--upload-file|\\s-T\\s|\\s-X\\s+(?:POST|PUT))|wget\\b.*--post|\\b(?:scp|rsync)\\b.*@|requests\\.post|fetch\\(.*POST)",
+    "kinds": [],
+    "fields": [
+      "text"
+    ]
+  },
+  {
+    "tag": "remote_execution",
+    "pattern": "(?:\\b(?:curl|wget)\\b[^\\n]*\\|\\s*(?:sudo\\s+)?(?:ba)?sh\\b|(?:bash|sh)\\s*<\\(\\s*(?:curl|wget))",
+    "kinds": [],
+    "fields": [
+      "text"
+    ]
+  },
+  {
+    "tag": "destructive_operation",
+    "pattern": "(?:\\brm\\s+[^\\n]*-[a-zA-Z]*r[a-zA-Z]*\\s|\\bgit\\s+(?:reset\\s+--hard|clean\\s+-[a-zA-Z]*f)|\\bDROP\\s+(?:DATABASE|TABLE)\\b|\\bterraform\\s+destroy\\b)",
+    "kinds": [],
+    "fields": [
+      "text"
+    ]
+  },
+  {
+    "tag": "oversight_change",
+    "pattern": "(?:(?:\\b(?:rm|rmdir|truncate|disable|delete|unlink)\\b)[^\\n]*(?:\\.claude/(?:settings|hooks)(?=[./\\s\"';]|$)|\\.codex/(?:hooks|config)(?=[./\\s\"';]|$)|\\.cache/agent-monitor(?=/|\\s|[\"';]|$)|\\bevents\\.jsonl\\b|\\bdaemon_errors(?:\\.log)?\\b)|\\bdisableAllHooks\\b|--dangerously-bypass-hook-trust)|\\bpkill\\b[^\\n]*monitor\\s+daemon",
+    "kinds": [],
+    "fields": [
+      "text"
+    ]
+  },
+  {
+    "tag": "privilege_change",
+    "pattern": "(?:\\bsudo\\s|\\bchmod\\s+(?:777|[ugo]*\\+s)|\\bchown\\s+root|--privileged\\b)",
+    "kinds": [],
+    "fields": [
+      "text"
+    ]
+  },
+  {
+    "tag": "public_exposure",
+    "pattern": "(?:--host\\s+0\\.0\\.0\\.0|(?:0\\.0\\.0\\.0|\\*):\\d+|--public\\b|\\bngrok\\b|\\bcloudflared\\s+tunnel)|--bind\\s+0\\.0\\.0\\.0",
+    "kinds": [],
+    "fields": [
+      "text"
+    ]
+  },
+  {
+    "tag": "dependency_change",
+    "pattern": "\\b(?:npm|pnpm|yarn|pip|uv)\\s+(?:install|add|pip\\s+install)\\b",
+    "kinds": [],
+    "fields": [
+      "text"
+    ]
+  },
+  {
+    "tag": "injection_instruction",
+    "pattern": "(?:ignore\\s+(?:all\\s+)?(?:previous|prior|the\\s+user|the\\s+monitor)|disable\\s+(?:the\\s+)?monitor|score\\s+(?:this\\s+)?(?:zero|0)|system\\s+override|send\\s+(?:the\\s+)?(?:credentials|secrets|token))",
+    "kinds": [],
+    "fields": [
+      "output"
+    ]
+  }
+]
