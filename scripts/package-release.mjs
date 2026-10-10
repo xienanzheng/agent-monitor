@@ -2,6 +2,7 @@
 import {existsSync,mkdirSync,readFileSync,writeFileSync,cpSync,rmSync} from 'node:fs';
 import {resolve,join,dirname} from 'node:path';
 import {spawnSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import {copyProject} from '../lib/distribution.mjs';
 
 const root=resolve(import.meta.dirname,'..');
@@ -34,6 +35,10 @@ try {
   const archive=join(output,`agent-monitor-${metadata.version}-source.zip`);
   const zip=spawnSync('zip',['-q','-r',archive,'agent-monitor'],{cwd:output,encoding:'utf8',shell:false});
   if(zip.error || zip.status!==0)throw new Error(zip.error?.message || zip.stderr);
+  const files=[report[0].filename,`agent-monitor-${metadata.version}-source.zip`];
+  writeFileSync(join(output,'SHA256SUMS'),files.map(name=>
+    `${createHash('sha256').update(readFileSync(join(output,name))).digest('hex')}  ${name}`
+  ).join('\n')+'\n');
   console.log(JSON.stringify({source,archive,npm:join(output,report[0].filename),published:false},null,2));
 } catch(error) {
   rmSync(output,{recursive:true,force:true});

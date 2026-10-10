@@ -8,7 +8,7 @@ npm test
 npm run release:build
 ```
 
-The release builder requires a fresh destination and exports an explicit subset. It produces a source ZIP, an npm tarball and its packing manifest under `dist/agent-monitor-0.1.0/`. The source includes built assets and tests. Runtime logs, real data, local results, machine settings and historical screenshots are excluded. Review the exported files and license before publishing.
+The release builder requires a fresh destination and exports an explicit subset. It produces a source ZIP, an npm tarball, SHA256 checksums and its packing manifest under `dist/agent-monitor-0.1.0/`. The source includes built assets and tests. Runtime logs, real data, local results, machine settings and historical screenshots are excluded. Review the exported files and license before publishing.
 
 To test the actual artifact without registry publication:
 

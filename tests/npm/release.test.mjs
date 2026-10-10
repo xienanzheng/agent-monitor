@@ -5,6 +5,7 @@ import {tmpdir} from 'node:os';
 import {join,resolve} from 'node:path';
 import {spawnSync,spawn} from 'node:child_process';
 import {once} from 'node:events';
+import {createHash} from 'node:crypto';
 
 const root=resolve(import.meta.dirname,'../..');
 
@@ -29,9 +30,14 @@ test('packed npm artifact includes built assets and source without local evidenc
   assert.ok(existsSync(join(dest,'dashboard/dist/index.html')));
   assert.match(readFileSync(join(dest,'LICENSE'),'utf8'),/MIT License/);
   assert.ok(existsSync(join(dest,'docs/architecture.md')));
+  assert.ok(existsSync(join(dest,'.github/workflows/ci.yml')));
   assert.equal(existsSync(join(dest,'logs')),false);
   assert.equal(readFileSync(join(dest,'.gitignore'),'utf8'),readFileSync(join(root,'.gitignore'),'utf8'));
   assert.ok(existsSync(join(out,'agent-monitor-0.1.0-source.zip')));
+  for(const line of readFileSync(join(out,'SHA256SUMS'),'utf8').trim().split('\n')){
+    const [hash,file]=line.split('  ');
+    assert.equal(createHash('sha256').update(readFileSync(join(out,file))).digest('hex'),hash);
+  }
   // GitHub npx packs the source workspace, rather than the separate scoped publisher.
   const source=join(out,'agent-monitor');
   const packedSource=spawnSync('npm',['pack','--ignore-scripts','--json','--pack-destination',out],{cwd:source,encoding:'utf8'});
@@ -42,6 +48,7 @@ test('packed npm artifact includes built assets and source without local evidenc
   const exec=spawnSync('npm',['exec','--yes','--package',join(out,sourcePackage.filename),'--','agent-monitor','init',fromSource],{encoding:'utf8'});
   assert.equal(exec.status,0,exec.stderr);
   assert.ok(existsSync(join(fromSource,'dashboard/dist/index.html')));
+  assert.ok(existsSync(join(fromSource,'.github/workflows/ci.yml')));
 });
 
 test('npm start shuts down only its own daemon and dashboard on interruption',async t=>{

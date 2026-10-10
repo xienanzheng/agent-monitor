@@ -8,7 +8,7 @@ The hooks record activity and fail open. Assessments run asynchronously and do n
 
 ## Download and run
 
-The npm distribution includes the Python source, rules, prompts, synthetic cases, tests and a built dashboard. Python dependencies and model weights are installed separately. It requires Node 22+, Python 3.11+ through [uv](https://docs.astral.sh/uv/getting-started/installation/), and [Ollama](https://ollama.com). macOS and Linux are supported; use WSL on Windows. macOS notifications are optional. The code is MIT licensed; dependencies and separately downloaded models retain their own licenses.
+The npm distribution includes the Python source, rules, prompts, synthetic cases, tests and a built dashboard. Python dependencies and model weights are installed separately. It requires Node 22+, Python 3.11+ through [uv](https://docs.astral.sh/uv/getting-started/installation/), and [Ollama](https://ollama.com). The GitHub npm download also needs Git. macOS and Linux are supported; use WSL on Windows. macOS notifications are optional. The code is MIT licensed; dependencies and separately downloaded models retain their own licenses.
 
 Download directly from the public GitHub repository:
 
@@ -27,7 +27,7 @@ After npm registry publication, the shorter download command is available:
 npx @xienanzheng/agent-monitor init my-monitor
 ```
 
-Start Ollama before launching. Open http://127.0.0.1:8765. Ctrl-C stops the daemon and dashboard started by this command. Startup after reboot is manual.
+Start Ollama before launching. Open http://127.0.0.1:8765. Ctrl-C stops the daemon and dashboard started by this command. Startup after reboot is manual. The default socket supports one live daemon per user; stop an existing instance before starting a different project copy.
 
 For a source download or clone, enter its directory and start at `npm run setup`. The built release includes dashboard assets; a development checkout needs `npm run build:dashboard` first. `npm install` does not install hooks or download model weights.
 

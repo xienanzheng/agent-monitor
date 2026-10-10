@@ -53,6 +53,7 @@
     "CONTRIBUTING.md",
     "SECURITY.md",
     "README.md",
-    "docs"
+    "docs",
+    ".github"
   ]
 }
